@@ -4,7 +4,22 @@
 	</head>
 	<body>
 		<h1>Find the last but one element of a list</h1>
-		<iframe src="http://www.scalakata.com/5046d112e4b0e5b34a987d69" height="600 px" width="100%"></iframe>
+		<iframe src="http://www.scalakata.com/5046d112e4b0e5b34a987d69" height="600 px" width="100%">
+			<pre>
+				def penultimate[T](list: List[T]): T = {
+					// TODO: Implement
+				}
+
+				val actual = penultimate(List(1, 1, 2, 3, 5, 8))
+				val expected = 5
+				val actual1 = penultimate(List(4,5))
+				val expected1 = 4
+				if (actual == expected && actual1 == expected1)
+					print("You successfully implemented the function")
+				else
+					print("Unfortunatly, that's not quite right yet")
+			</pre>
+		</iframe>
 		<a href="Solutions.html">Solutions</a>
 	</body>
 </html>
