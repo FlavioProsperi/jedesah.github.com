@@ -1,22 +1,77 @@
 <html>
 	<head>
-		<title>P1 - Find the last element of a list</title>
+		<title>P4 - Find the number of elements of a list</title>
 	</head>
 	<body>
-		<h1>Find the last element of a list - Solutions</h1>
+		<h1>Find the number of elements of a list - Solutions</h1>
 		<ol>
-    		<li>
-        		<p>Using the built-in</p>
-         		<iframe src="http://www.scalakata.com/5044ec69e4b0e5b34a987bcc" height="400 px" width="100%"></iframe>
-    		</li>
-    		<li>
-        		<p>The standard functional approach is to recurse down the list until we hit the end. Scala's pattern matching makes this easy.</p>
-        		<iframe src="http://www.scalakata.com/5044ecb6e4b0e5b34a987bce" height="400 px" width="100%"></iframe>
-    		</li>
-    		<li>
-    			<p>Slightly less built-in</p>
-    			<iframe src="http://www.scalakata.com/50455c89e4b0e5b34a987beb" height="400 px" width="100%"></iframe>
-    		</li>
+	    		<li>
+	        		<p>Builtin</p>
+	         		<iframe src="http://www.scalakata.com/504ce8c2e4b0bb89f9604083" height="400 px" width="100%">
+	         			<pre>
+	         				def length[T](list: List[T]): Int = {
+							list.length
+						}
+	
+						val actual = length(List(1, 1, 2, 3, 5, 8))
+						val expected = 6
+						if (actual == expected) print("You successfully implemented the function")
+						else                    print("Unfortunatly, that's not quite rigth yet")
+	         			</pre>
+	         		</iframe>
+	    		</li>
+	    		<li>
+	        		<p>Simple recursive solution</p>
+	        		<iframe src="http://www.scalakata.com/504ce955e4b0bb89f9604085" height="400 px" width="100%">
+	        			<pre>
+	        				def length[T](list: List[T]): Int = {
+							list match {
+								case Nil       => 0
+								case _ :: tail => 1 + length(tail)
+							}
+						}
+	
+						val actual = length(List(1, 1, 2, 3, 5, 8))
+						val expected = 6
+						if (actual == expected) print("You successfully implemented the function")
+						else                    print("Unfortunatly, that's not quite right yet")
+	        			</pre>
+	        		</iframe>
+	    		</li>
+	    		<li>
+	    			<p>Tail recursive solution. Theoretically more efficient; with tail-call elimination in the compiler, this would run in constant space. Unfortunately, the JVM doesn't do tail-call elimination in the generalcase. Scala *will* do it if the method is either final or is a localfunction. In this case, `length(Int, List)` is a local function, so it should be properly optimized. For more information, see http://blog.richdougherty.com/2009/04/tail-calls-tailrec-and-trampolines.html</p>
+	    			<iframe src="http://www.scalakata.com/504ceac8e4b0bb89f9604086" height="400 px" width="100%">
+	    				<pre>
+	    					def length[T](list: List[T]): Int = {
+							def length(result: Int, curList: List[T]): Int = curList match {
+	   							case Nil       => result
+	      							case _ :: tail => length(result + 1, tail)
+							}
+							length(0, list)
+						}
+	
+						val actual = length(List(1, 1, 2, 3, 5, 8))
+						val expected = 6
+						if (actual == expected) print("You successfully implemented the function")
+						else                    print("Unfortunatly, that's not quite right yet")
+	    				</pre>
+	    			</iframe>
+	    		</li>
+	    		<li>
+	    			<p>More pure functional solution, with folds</p>
+	    			<iframe src="http://www.scalakata.com/504cebece4b0bb89f960408a" height="400 px" width="100%">
+	    				<pre>
+	    					def length[T](list: List[T]): Int = {
+							list.foldLeft(0)((c, _) => c + 1)
+						}
+	
+						val actual = length(List(1, 1, 2, 3, 5, 8))
+						val expected = 6
+						if (actual == expected) print("You successfully implemented the function")
+						else                    print("Unfortunatly, that's not quite right yet")
+	    				</pre>
+	    			</iframe>
+	    		</li>
 		</ol>
 	</body>
 </html>
