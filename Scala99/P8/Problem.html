@@ -1,10 +1,22 @@
 <html>
 	<head>
-		<title>P1 - Find the last element of a list</title>
+		<title>P7 - Eliminate consecutive duplicates of list elements</title>
 	</head>
 	<body>
-		<h1>Find the last element of a list</h1>
-		<iframe src="http://www.scalakata.com/504438a3e4b0e5b34a987bc1" height="600 px" width="100%"></iframe>
+		<h1>Eliminate consecutive duplicates of list elements</h1>
+		<p>If a list contains repeated elements they should be replaced with a single copy of the element. The order of the elements should not be changed.</p>
+		<iframe src="http://www.scalakata.com/504eb285e4b04859bf01bf14" height="600 px" width="100%">
+			<pre>
+				def compress[T](list: List[T]): List[T] = {
+					// TODO: Implement
+				}
+				
+				val actual = compress(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+				val expected = List('a, 'b, 'c, 'a, 'd, 'e)
+				if (actual == expected) print("You successfully implemented the function")
+				else                    print("Unfortunatly, that's not quite right yet")
+			</pre>
+		</iframe>
 		<a href="Solutions.html">Solutions</a>
 	</body>
 </html>
