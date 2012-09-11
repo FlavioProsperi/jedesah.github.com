@@ -1,21 +1,77 @@
 <html>
 	<head>
-		<title>P1 - Find the last element of a list</title>
+		<title>P5 - Reverse a list</title>
 	</head>
 	<body>
-		<h1>Find the last element of a list - Solutions</h1>
+		<h1>Reverse a list - Solutions</h1>
 		<ol>
     		<li>
         		<p>Using the built-in</p>
-         		<iframe src="http://www.scalakata.com/5044ec69e4b0e5b34a987bcc" height="400 px" width="100%"></iframe>
+         		<iframe src="http://www.scalakata.com/504ea6bde4b04859bf01befd" height="400 px" width="100%">
+         			<pre>
+         				def reverse[T](list: List[T]): List[T] = {
+						list.reverse
+					}
+					
+					val actual = reverse(List(1, 1, 2, 3, 5, 8))
+					val expected = List(8, 5, 3, 2, 1, 1)
+					if (actual == expected) print("You successfully implemented the function")
+					else                    print("Unfortunatly, that's not quite right yet")
+         			</pre>
+         		</iframe>
     		</li>
     		<li>
-        		<p>The standard functional approach is to recurse down the list until we hit the end. Scala's pattern matching makes this easy.</p>
-        		<iframe src="http://www.scalakata.com/5044ecb6e4b0e5b34a987bce" height="400 px" width="100%"></iframe>
+        		<p>Simple recursive. O(n^2)</p>
+        		<iframe src="http://www.scalakata.com/504ea73be4b04859bf01beff" height="400 px" width="100%">
+        			<pre>
+        				def reverse[T](list: List[T]): List[T] = {
+						list match
+						{
+					    		case Nil       => Nil
+					    		case h :: tail => reverse(tail) ::: List(h)
+						}
+					}
+					
+					val actual = reverse(List(1, 1, 2, 3, 5, 8))
+					val expected = List(8, 5, 3, 2, 1, 1)
+					if (actual == expected) print("You successfully implemented the function")
+					else                    print("Unfortunatly, that's not quite right yet")
+        			</pre>
+        		</iframe>
     		</li>
     		<li>
-    			<p>Slightly less built-in</p>
-    			<iframe src="http://www.scalakata.com/50455c89e4b0e5b34a987beb" height="400 px" width="100%"></iframe>
+    			<p>Tail recursive</p>
+    			<iframe src="http://www.scalakata.com/504ea791e4b04859bf01bf00" height="400 px" width="100%">
+    				<pre>
+    					def reverse[T](list: List[T]): List[T] = {
+						def reverse(result: List[T], curList: List[T]): List[T] = curList match {
+					      		case Nil       => result
+					      		case h :: tail => reverse(h :: result, tail)
+					    	}
+					    	reverse(Nil, list)
+					}
+
+					val actual = reverse(List(1, 1, 2, 3, 5, 8))
+					val expected = List(8, 5, 3, 2, 1, 1)
+					if (actual == expected) print("You successfully implemented the function")
+					else                    print("Unfortunatly, that's not quite right yet")
+    				</pre>
+    			</iframe>
+    		</li>
+    		<li>
+    			<p>Pure functional</p>
+    			<iframe src="http://www.scalakata.com/504ea7e2e4b04859bf01bf01" height="400 px" width="100%">
+    				<pre>
+    					def reverse[T](list: List[T]): List[T] = {
+						list.foldLeft(List[T]()) { (r, h) => h :: r }
+					}
+					
+					val actual = reverse(List(1, 1, 2, 3, 5, 8))
+					val expected = List(8, 5, 3, 2, 1, 1)
+					if (actual == expected) print("You successfully implemented the function")
+					else                    print("Unfortunatly, that's not quite right yet")
+    				</pre>
+    			</iframe>
     		</li>
 		</ol>
 	</body>
