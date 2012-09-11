@@ -1,21 +1,26 @@
 <html>
 	<head>
-		<title>P1 - Find the last element of a list</title>
+		<title>P7 - Flatten a nested list structure</title>
 	</head>
 	<body>
-		<h1>Find the last element of a list - Solutions</h1>
+		<h1>Flatten a nested list structure - Solutions</h1>
 		<ol>
     		<li>
-        		<p>Using the built-in</p>
-         		<iframe src="http://www.scalakata.com/5044ec69e4b0e5b34a987bcc" height="400 px" width="100%"></iframe>
-    		</li>
-    		<li>
-        		<p>The standard functional approach is to recurse down the list until we hit the end. Scala's pattern matching makes this easy.</p>
-        		<iframe src="http://www.scalakata.com/5044ecb6e4b0e5b34a987bce" height="400 px" width="100%"></iframe>
-    		</li>
-    		<li>
-    			<p>Slightly less built-in</p>
-    			<iframe src="http://www.scalakata.com/50455c89e4b0e5b34a987beb" height="400 px" width="100%"></iframe>
+         		<iframe src="http://www.scalakata.com/504eb15ee4b04859bf01bf12" height="400 px" width="100%">
+         			<pre>
+         				def flatten(list: List[Any]): List[Any] = {
+						list flatMap {
+						    	case ms: List[_] => flatten(ms)
+						    	case e => List(e)
+						}
+					}
+					
+					val actual = flatten(List(List(1, 1), 2, List(3, List(5, 8))))
+					val expected = List(1, 1, 2, 3, 5, 8)
+					if (actual == expected) print("You successfully implemented the function")
+					else                    print("Unfortunatly, that's not quite right yet")
+         			</pre>
+         		</iframe>
     		</li>
 		</ol>
 	</body>
