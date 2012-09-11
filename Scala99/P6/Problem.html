@@ -1,10 +1,23 @@
 <html>
 	<head>
-		<title>P1 - Find the last element of a list</title>
+		<title>P6 - Find out whether a list is a palindrome</title>
 	</head>
 	<body>
-		<h1>Find the last element of a list</h1>
-		<iframe src="http://www.scalakata.com/504438a3e4b0e5b34a987bc1" height="600 px" width="100%"></iframe>
+		<h1>Find out whether a list is a palindrome</h1>
+		<iframe src="http://www.scalakata.com/504ea8ffe4b04859bf01bf02" height="600 px" width="100%">
+			<pre>
+				def isPalindrome[T](list: List[T]): Boolean = {
+					// TODO: Implement
+				}
+				
+				val actual = isPalindrome(List(1, 2, 3, 2, 1))
+				val expected = true
+				val actual1 = isPalindrome(List(1, 2, 3, 2, 2))
+				val expected1 = false
+				if (actual == expected && actual1 == expected1) print("You successfully implemented the function")
+				else                                            print("Unfortunatly, that's not quite right yet")
+			</pre>
+		</iframe>
 		<a href="Solutions.html">Solutions</a>
 	</body>
 </html>
