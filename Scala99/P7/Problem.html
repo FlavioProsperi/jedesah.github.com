@@ -1,10 +1,21 @@
 <html>
 	<head>
-		<title>P1 - Find the last element of a list</title>
+		<title>P7 - Flatten a nested list structure</title>
 	</head>
 	<body>
-		<h1>Find the last element of a list</h1>
-		<iframe src="http://www.scalakata.com/504438a3e4b0e5b34a987bc1" height="600 px" width="100%"></iframe>
+		<h1>Flatten a nested list structure</h1>
+		<iframe src="http://www.scalakata.com/504eb0f5e4b04859bf01bf11" height="600 px" width="100%">
+			<pre>
+				def flatten(list: List[Any]): List[Any] = {
+					// TODO: Implement
+				}
+				
+				val actual = flatten(List(List(1, 1), 2, List(3, List(5, 8))))
+				val expected = List(1, 1, 2, 3, 5, 8)
+				if (actual == expected) print("You successfully implemented the function")
+				else                    print("Unfortunatly, that's not quite right yet")
+			</pre>
+		</iframe>
 		<a href="Solutions.html">Solutions</a>
 	</body>
 </html>
