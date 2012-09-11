@@ -1,21 +1,44 @@
 <html>
 	<head>
-		<title>P1 - Find the last element of a list</title>
+		<title>P9 - Encoding</title>
 	</head>
 	<body>
-		<h1>Find the last element of a list - Solutions</h1>
+		<h1>Encoding - Solutions</h1>
 		<ol>
     		<li>
-        		<p>Using the built-in</p>
-         		<iframe src="http://www.scalakata.com/5044ec69e4b0e5b34a987bcc" height="400 px" width="100%"></iframe>
-    		</li>
-    		<li>
-        		<p>The standard functional approach is to recurse down the list until we hit the end. Scala's pattern matching makes this easy.</p>
-        		<iframe src="http://www.scalakata.com/5044ecb6e4b0e5b34a987bce" height="400 px" width="100%"></iframe>
-    		</li>
-    		<li>
-    			<p>Slightly less built-in</p>
-    			<iframe src="http://www.scalakata.com/50455c89e4b0e5b34a987beb" height="400 px" width="100%"></iframe>
+         		<iframe src="http://www.scalakata.com/504eb5f1e4b04859bf01bf1b" height="400 px" width="100%">
+         			<pre>
+         				def pack[T](list: List[T]): List[List[T]] = {
+						if (list.isEmpty) List(List())
+							else {
+								val (packed, next) = list span { _ == list.head }
+								if (next == Nil) List(packed)
+								else packed :: pack(next)
+							}
+					}
+					
+					def encode[T](list: List[T]): List[(Int, T)] = {
+						pack(list) map { e => (e.length, e.head) }
+					}
+					
+					def encodeModified[T](list: List[T]): List[Any] = {
+						encode(list) map { t => if (t._1 == 1) t._2 else t }
+					}
+					
+					val actual = pack(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+					val expected = List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e))
+					if (actual == expected) println("You successfully implemented the pack function")
+					else                    println("Unfortunatly, that's not quite right yet")
+					val actual2 = encode(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+					val expected2 = List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e))
+					if (actual2 == expected2) println("You successfully implemented the encode function")
+					else                      println("Unfortunatly, that's not quite right yet")
+					val actual3 = encodeModified(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+					val expected3 = List((4,'a), 'b, (2,'c), (2,'a), 'd, (4,'e))
+					if (actual3 == expected3) println("You successfully implemented the encodeModified function")
+					else                      println("Unfortunatly, that's not quite right yet")
+         			</pre>
+         		</iframe>
     		</li>
 		</ol>
 	</body>
