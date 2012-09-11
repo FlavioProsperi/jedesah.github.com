@@ -20,7 +20,7 @@
 			Modify the result of problem P10 in such a way that if an element has no duplicates it is simply copied into the result list.
 			Only elements with duplicates are transferred as (N, E) terms.
 		</p>
-		<iframe src="http://www.scalakata.com/504eb54ee4b04859bf01bf19" height="600 px" width="100%">
+		<iframe src="http://www.scalakata.com/504eb68ee4b04859bf01bf1c" height="600 px" width="100%">
 			<pre>
 				def pack[T](list: List[T]): List[List[T]] = {
 					// TODO: Implement
@@ -36,16 +36,16 @@
 				
 				val actual = pack(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
 				val expected = List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e))
-				if (actual == expected) print("You successfully implemented the pack function")
-				else                    print("Unfortunatly, that's not quite right yet")
+				if (actual == expected) println("You successfully implemented the pack function")
+				else                    println("Unfortunatly, that's not quite right yet")
 				val actual2 = encode(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
 				val expected2 = List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e))
-				if (actual2 == expected2) print("You successfully implemented the encode function")
-				else                      print("Unfortunatly, that's not quite right yet")
+				if (actual2 == expected2) println("You successfully implemented the encode function")
+				else                      println("Unfortunatly, that's not quite right yet")
 				val actual3 = encodeModified(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
 				val expected3 = List((4,'a), 'b, (2,'c), (2,'a), 'd, (4,'e))
-				if (actual3 == expected3) print("You successfully implemented the encodeModified function")
-				else                      print("Unfortunatly, that's not quite right yet")
+				if (actual3 == expected3) println("You successfully implemented the encodeModified function")
+				else                      println("Unfortunatly, that's not quite right yet")
 			</pre>
 		</iframe>
 		<a href="Solutions.html">Solutions</a>
