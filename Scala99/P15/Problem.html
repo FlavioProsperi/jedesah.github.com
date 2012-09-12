@@ -1,10 +1,21 @@
 <html>
 	<head>
-		<title>P1 - Find the last element of a list</title>
+		<title>P15 - Duplicate the elements of a list a given number of times</title>
 	</head>
 	<body>
-		<h1>Find the last element of a list</h1>
-		<iframe src="http://www.scalakata.com/504438a3e4b0e5b34a987bc1" height="600 px" width="100%"></iframe>
+		<h1>Duplicate the elements of a list a given number of times</h1>
+		<iframe src="http://www.scalakata.com/50500551e4b04859bf01bfd0" height="600 px" width="100%">
+			<pre>
+				def duplicateN[T](numberOfTimes: Int, list: List[T]): List[T] = {
+					// TODO: Implement
+				}
+				
+				val actual = duplicateN(3, List('a, 'b, 'c, 'c, 'd))
+				val expected = List('a, 'a, 'a, 'b, 'b, 'b, 'c, 'c, 'c, 'c, 'c, 'c, 'd, 'd, 'd)
+				if (actual == expected) print("You successfully implemented the function")
+				else                    print("Unfortunatly, that's not quite right yet")
+			</pre>
+		</iframe>
 		<a href="Solutions.html">Solutions</a>
 	</body>
 </html>
