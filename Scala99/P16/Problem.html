@@ -1,10 +1,21 @@
 <html>
 	<head>
-		<title>P1 - Find the last element of a list</title>
+		<title>P16 - Drop every <i>N</i>th element from a list</title>
 	</head>
 	<body>
-		<h1>Find the last element of a list</h1>
-		<iframe src="http://www.scalakata.com/504438a3e4b0e5b34a987bc1" height="600 px" width="100%"></iframe>
+		<h1>Drop every <i>N</i>th element from a list</h1>
+		<iframe src="http://www.scalakata.com/505006ade4b04859bf01bfd3" height="600 px" width="100%">
+			<pre>
+				def drop[T](nbToDrop: Int, list: List[T]): List[T] = {
+					// TODO: Implement
+				}
+				
+				val actual = drop(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+				val expected = List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)
+				if (actual == expected) print("You successfully implemented the function")
+				else                    print("Unfortunatly, that's not quite right yet")
+			</pre>
+		</iframe>
 		<a href="Solutions.html">Solutions</a>
 	</body>
 </html>
