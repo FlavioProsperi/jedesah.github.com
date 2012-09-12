@@ -1,21 +1,64 @@
 <html>
 	<head>
-		<title>P1 - Find the last element of a list</title>
+		<title>P16 - Drop every Nth element from a list</title>
 	</head>
 	<body>
-		<h1>Find the last element of a list - Solutions</h1>
+		<h1>Drop every Nth element from a list - Solutions</h1>
 		<ol>
     		<li>
-        		<p>Using the built-in</p>
-         		<iframe src="http://www.scalakata.com/5044ec69e4b0e5b34a987bcc" height="400 px" width="100%"></iframe>
+        		<p>Simple recursion</p>
+         		<iframe src="http://www.scalakata.com/5050071ee4b04859bf01bfd4" height="400 px" width="100%">
+         			<pre>
+         				def drop[T](nbToDrop: Int, list: List[T]): List[T] = {
+						def drop(c: Int, curList: List[T]): List[T] = (c, curList) match {
+					      		case (_, Nil)       => Nil
+					      		case (1, _ :: tail) => drop(nbToDrop, tail)
+					      		case (_, h :: tail) => h :: drop(c - 1, tail)
+					    	}
+					    	drop(nbToDrop, list)
+					}
+					
+					val actual = drop(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+					val expected = List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)
+					if (actual == expected) print("You successfully implemented the function")
+					else                    print("Unfortunatly, that's not quite right yet")
+         			</pre>
+         		</iframe>
     		</li>
     		<li>
-        		<p>The standard functional approach is to recurse down the list until we hit the end. Scala's pattern matching makes this easy.</p>
-        		<iframe src="http://www.scalakata.com/5044ecb6e4b0e5b34a987bce" height="400 px" width="100%"></iframe>
+        		<p>Tail recursive</p>
+        		<iframe src="http://www.scalakata.com/5050077ce4b04859bf01bfd5" height="400 px" width="100%">
+        			<pre>
+        				def drop[T](nbToDrop: Int, list: List[T]): List[T] = {
+						def drop(c: Int, curList: List[T], result: List[T]): List[T] = (c, curList) match {
+					      		case (_, Nil)       => result.reverse
+					      		case (1, _ :: tail) => drop(nbToDrop, tail, result)
+					      		case (_, h :: tail) => drop(c - 1, tail, h :: result)
+					    	}
+					    	drop(nbToDrop, list, Nil)
+					}
+					
+					val actual = drop(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+					val expected = List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)
+					if (actual == expected) print("You successfully implemented the function")
+					else                    print("Unfortunatly, that's not quite right yet")
+        			</pre>
+        		</iframe>
     		</li>
     		<li>
-    			<p>Slightly less built-in</p>
-    			<iframe src="http://www.scalakata.com/50455c89e4b0e5b34a987beb" height="400 px" width="100%"></iframe>
+    			<p>Functional</p>
+    			<iframe src="http://www.scalakata.com/505007cae4b04859bf01bfd6" height="400 px" width="100%">
+    				<pre>
+    					def drop[T](nbToDrop: Int, list: List[T]): List[T] = {
+						list.zipWithIndex filter { v => (v._2 + 1) % nbToDrop != 0 } map { _._1 }
+					}
+					
+					val actual = drop(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+					val expected = List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)
+					if (actual == expected) print("You successfully implemented the function")
+					else                    print("Unfortunatly, that's not quite right yet")
+    				</pre>
+    			</iframe>
     		</li>
 		</ol>
 	</body>
