@@ -1,22 +1,24 @@
 <html>
 	<head>
-		<title>P1 - Find the last element of a list</title>
+		<title>P12 - Decode a run-length encoded list</title>
 	</head>
 	<body>
-		<h1>Find the last element of a list - Solutions</h1>
+		<h1>Decode a run-length encoded list - Solutions</h1>
 		<ol>
-    		<li>
-        		<p>Using the built-in</p>
-         		<iframe src="http://www.scalakata.com/5044ec69e4b0e5b34a987bcc" height="400 px" width="100%"></iframe>
-    		</li>
-    		<li>
-        		<p>The standard functional approach is to recurse down the list until we hit the end. Scala's pattern matching makes this easy.</p>
-        		<iframe src="http://www.scalakata.com/5044ecb6e4b0e5b34a987bce" height="400 px" width="100%"></iframe>
-    		</li>
-    		<li>
-    			<p>Slightly less built-in</p>
-    			<iframe src="http://www.scalakata.com/50455c89e4b0e5b34a987beb" height="400 px" width="100%"></iframe>
-    		</li>
+	    		<li>
+	         		<iframe src="http://www.scalakata.com/5050018be4b04859bf01bfc8" height="400 px" width="100%">
+	         			<pre>
+	         				def decode[T](list: List[(Int, T)]): List[T] = {
+							list flatMap { e => List.make(e._1, e._2) }
+						}
+						
+						val actual = decode(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
+						val expected = List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
+						if (actual == expected) print("You successfully implemented the function")
+						else                    print("Unfortunatly, that's not quite right yet")
+	         			</pre>
+	         		</iframe>
+	    		</li>
 		</ol>
 	</body>
 </html>
