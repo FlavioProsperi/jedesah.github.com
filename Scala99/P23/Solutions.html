@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>P15 - Duplicate the elements of a list a given number of times</title>
+	</head>
+	<body>
+		<h1>Duplicate the elements of a list a given number of times - Solutions</h1>
+		<ol>
+	    		<li>
+	         		<iframe src="http://www.scalakata.com/505005b8e4b04859bf01bfd2" height="400 px" width="100%">
+	         			<pre>
+	         				def duplicateN[T](numberOfTimes: Int, list: List[T]): List[T] = {
+							list flatMap { List.make(numberOfTimes, _) }
+						}
+						
+						val actual = duplicateN(3, List('a, 'b, 'c, 'c, 'd))
+						val expected = List('a, 'a, 'a, 'b, 'b, 'b, 'c, 'c, 'c, 'c, 'c, 'c, 'd, 'd, 'd)
+						if (actual == expected) print("You successfully implemented the function")
+						else                    print("Unfortunatly, that's not quite right yet")
+	         			</pre>
+	         		</iframe>
+	    		</li>
+		</ol>
+	</body>
+</html>

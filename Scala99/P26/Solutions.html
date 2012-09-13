@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>P12 - Decode a run-length encoded list</title>
+	</head>
+	<body>
+		<h1>Decode a run-length encoded list - Solutions</h1>
+		<ol>
+	    		<li>
+	         		<iframe src="http://www.scalakata.com/5050018be4b04859bf01bfc8" height="400 px" width="100%">
+	         			<pre>
+	         				def decode[T](list: List[(Int, T)]): List[T] = {
+							list flatMap { e => List.make(e._1, e._2) }
+						}
+						
+						val actual = decode(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
+						val expected = List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
+						if (actual == expected) print("You successfully implemented the function")
+						else                    print("Unfortunatly, that's not quite right yet")
+	         			</pre>
+	         		</iframe>
+	    		</li>
+		</ol>
+	</body>
+</html>

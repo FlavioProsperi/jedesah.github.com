@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<title>P1 - Find the last element of a list</title>
+	</head>
+	<body>
+		<h1>Find the last element of a list - Solutions</h1>
+		<ol>
+    		<li>
+        		<p>Using the built-in</p>
+         		<iframe src="http://www.scalakata.com/5046d13fe4b0e5b34a987d6b" height="400 px" width="100%">
+         			<pre>
+         				def penultimate[T](list: List[T]): T = {
+							if (list.isEmpty) throw new NoSuchElementException
+   							else list.init.last
+						}
+
+						val actual = penultimate(List(1, 1, 2, 3, 5, 8))
+						val expected = 5
+						val actual1 = penultimate(List(4,5))
+						val expected1 = 4
+						if (actual == expected && actual1 == expected1) print("You successfully implemented the function")
+						else 						print("Unfortunatly, that's not quite right yet")
+         			</pre>
+         		</iframe>
+    		</li>
+    		<li>
+        		<p>With pattern matching</p>
+        		<iframe src="http://www.scalakata.com/5046d162e4b0e5b34a987d6d" height="400 px" width="100%">
+        			def penultimate[T](list: List[T]): T = {
+					list match {
+    						case h :: _ :: Nil => h
+    						case _ :: tail     => penultimate(tail)
+    						case _             => throw new NoSuchElementException
+					}
+				}
+
+				val actual = penultimate(List(1, 1, 2, 3, 5, 8))
+				val expected = 5
+				val actual1 = penultimate(List(4,5))
+				val expected1 = 4
+				if (actual == expected && actual1 == expected1) print("You successfully implemented the function")
+				else 						print("Unfortunatly, that's not quite right yet")
+        		</iframe>
+    		</li>
+		</ol>
+	</body>
+</html>

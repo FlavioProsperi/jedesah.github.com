@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<title>P3 - Find the Kth element of a list</title>
+	</head>
+	<body>
+		<h1>Find the Kth element of a list - Solutions</h1>
+		<ol>
+			<li>
+				<p>Trivial with builtins</p>
+				<iframe src="http://www.scalakata.com/504ce1b4e4b0bb89f9604081" height="400 px" width="100%">
+					<pre>	
+						def nth[T](n: Int, list: List[T]): T = {
+							if (n >= 0) list(n)
+							else throw new NoSuchElementException
+						}
+
+						val actual = nth(2, List(1, 1, 2, 3, 5, 8))
+						val expected = 2
+						val actual1 = nth(1, List(1, 12))
+						val expected1 = 12
+						if (actual == expected && actual1 == expected1) print("You successfully implemented the function")
+						else                                            print("Unfortunatly, that's not quite rigth yet")
+					</pre>
+				</iframe>
+			</li>
+			<li>
+				<p>Not that much harder without</p>
+				<iframe src="http://www.scalakata.com/504ce240e4b0bb89f9604082" height="400 px" width="100%">
+					<pre>
+						def nth[T](n: Int, list: List[T]): T = {
+							(n, list) match {
+								case (0, h :: _   ) => h
+								case (n, _ :: tail) => nth(n - 1, tail)
+								case (_, Nil      ) => throw new NoSuchElementException
+							}
+						}
+
+						val actual = nth(2, List(1, 1, 2, 3, 5, 8))
+						val expected = 2
+						val actual1 = nth(1, List(1, 12))
+						val expected1 = 12
+						if (actual == expected && actual1 == expected1) print("You successfully implemented the function")
+						else                                            print("Unfortunatly, that's not quite rigth yet")
+					</pre>	
+				</iframe>
+			</li>
+		</ol>
+	</body>
+</html>

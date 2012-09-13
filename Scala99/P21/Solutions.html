@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<title>P17 - Split a list into two parts</title>
+	</head>
+	<body>
+		<h1>Split a list into two parts - Solutions</h1>
+		<ol>
+	    		<li>
+	        		<p>Using the built-in</p>
+	         		<iframe src="http://www.scalakata.com/50500979e4b04859bf01bfda" height="400 px" width="100%">
+	         			<pre>
+	         				def split[T](indexToSplit: Int, list: List[T]): (List[T], List[T]) = {
+							list.splitAt(indexToSplit)
+						}
+						
+						val actual = split(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+						val expected = (List('a, 'b, 'c),List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+						if (actual == expected) print("You successfully implemented the function")
+						else                    print("Unfortunatly, that's not quite right yet")
+	         			</pre>
+	         		</iframe>
+	    		</li>
+	    		<li>
+	        		<p>Simple recursion</p>
+	        		<iframe src="http://www.scalakata.com/505009c7e4b04859bf01bfdb" height="400 px" width="100%">
+	        			<pre>
+	        				def split[T](indexToSplit: Int, list: List[T]): (List[T], List[T]) = {
+							(indexToSplit, list) match {
+						    		case (_, Nil)       => (Nil, Nil)
+						    		case (0, list)      => (Nil, list)
+						    		case (n, h :: tail) => {
+						      			val (pre, post) = split(indexToSplit - 1, tail)
+						      			(h :: pre, post)
+						    		}
+							}
+						}
+						
+						val actual = split(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+						val expected = (List('a, 'b, 'c),List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+						if (actual == expected) print("You successfully implemented the function")
+						else                    print("Unfortunatly, that's not quite right yet")
+	        			</pre>
+	        		</iframe>
+	    		</li>
+	    		<li>
+	    			<p>Tail recursive</p>
+	    			<iframe src="http://www.scalakata.com/50500b8be4b04859bf01bfde" height="400 px" width="100%">
+	    				<pre>
+	    					def split[T](indexToSplit: Int, list: List[T]): (List[T], List[T]) = {
+							def split(curN: Int, curL: List[T], pre: List[T]): (List[T], List[T]) =
+						      		(curN, curL) match {
+						        		case (_, Nil)       => (pre.reverse, Nil)
+						        		case (0, list)      => (pre.reverse, list)
+						        		case (n, h :: tail) => split(n - 1, tail, h :: pre)
+						      		}
+						    	split(indexToSplit, list, Nil)
+						}
+						
+						val actual = split(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+						val expected = (List('a, 'b, 'c),List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+						if (actual == expected) print("You successfully implemented the function")
+						else                    print("Unfortunatly, that's not quite right yet")
+	    				</pre>
+	    			</iframe>
+	    		</li>
+	    		<li>
+	    			<p>Functional (barely not "builtin")</p>
+	    			<iframe src="http://www.scalakata.com/50500c14e4b04859bf01bfdf" height="400 px" width="100%">
+	    				<pre>
+	    					def split[T](indexToSplit: Int, list: List[T]): (List[T], List[T]) = {
+							(list.take(indexToSplit), list.drop(indexToSplit))
+						}
+						
+						val actual = split(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+						val expected = (List('a, 'b, 'c),List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+						if (actual == expected) print("You successfully implemented the function")
+						else                    print("Unfortunatly, that's not quite right yet")
+	    				</pre>
+	    			</iframe>
+	    		</li>
+		</ol>
+	</body>
+</html>

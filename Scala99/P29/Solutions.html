@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title>P9 - Encoding</title>
+	</head>
+	<body>
+		<h1>Encoding - Solutions</h1>
+		<ol>
+    		<li>
+         		<iframe src="http://www.scalakata.com/504eb5f1e4b04859bf01bf1b" height="800 px" width="100%">
+         			<pre>
+         				def pack[T](list: List[T]): List[List[T]] = {
+						if (list.isEmpty) List(List())
+							else {
+								val (packed, next) = list span { _ == list.head }
+								if (next == Nil) List(packed)
+								else packed :: pack(next)
+							}
+					}
+					
+					def encode[T](list: List[T]): List[(Int, T)] = {
+						pack(list) map { e => (e.length, e.head) }
+					}
+					
+					def encodeModified[T](list: List[T]): List[Any] = {
+						encode(list) map { t => if (t._1 == 1) t._2 else t }
+					}
+					
+					val actual = pack(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+					val expected = List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e))
+					if (actual == expected) println("You successfully implemented the pack function")
+					else                    println("Unfortunatly, that's not quite right yet")
+					val actual2 = encode(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+					val expected2 = List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e))
+					if (actual2 == expected2) println("You successfully implemented the encode function")
+					else                      println("Unfortunatly, that's not quite right yet")
+					val actual3 = encodeModified(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+					val expected3 = List((4,'a), 'b, (2,'c), (2,'a), 'd, (4,'e))
+					if (actual3 == expected3) println("You successfully implemented the encodeModified function")
+					else                      println("Unfortunatly, that's not quite right yet")
+         			</pre>
+         		</iframe>
+    		</li>
+		</ol>
+	</body>
+</html>

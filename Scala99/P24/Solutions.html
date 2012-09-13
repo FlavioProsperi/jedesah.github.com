@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<title>P14 - Duplicate the elements of a list</title>
+	</head>
+	<body>
+		<h1>Duplicate the elements of a list - Solutions</h1>
+		<ol>
+	    		<li>
+	        		<p>Using the built-in</p>
+	         		<iframe src="http://www.scalakata.com/50500481e4b04859bf01bfcf" height="400 px" width="100%">
+	         			<pre>
+	         				def duplicate[T](list: List[T]): List[T] = {
+							list flatMap { e => List(e, e) }
+						}
+						
+						val actual = duplicate(List('a, 'b, 'c, 'c, 'd))
+						val expected = List('a, 'a, 'b, 'b, 'c, 'c, 'c, 'c, 'd, 'd)
+						if (actual == expected) print("You successfully implemented the function")
+						else                    print("Unfortunatly, that's not quite right yet")
+	         			</pre>
+	         		</iframe>
+	    		</li>
+		</ol>
+	</body>
+</html>

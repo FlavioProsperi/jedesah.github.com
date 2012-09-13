@@ -1,0 +1,79 @@
+<html>
+	<head>
+		<title>P6 - Find out whether a list is a palindrome</title>
+	</head>
+	<body>
+		<h1>Find out whether a list is a palindrome - Solutions</h1>
+		<ol>
+	    		<li>
+	        		<p>In theory, we could be slightly more efficient than this.  This approach
+				traverses the list twice: once to reverse it, and once to check equality.
+				Technically, we only need to check the first half of the list for equality
+				with the first half of the reversed list.  The code to do that more
+				efficiently than this implementation is much more complicated, so we'll
+				leave things with this clear and concise implementation.</p>
+	         		<iframe src="http://www.scalakata.com/504eaf71e4b04859bf01bf0f" height="400 px" width="100%">
+	         			<pre>
+	         				def isPalindrome[T](list: List[T]): Boolean = {
+							list == list.reverse
+						}
+						
+						val actual = isPalindrome(List(1, 2, 3, 2, 1))
+						val expected = true
+						val actual1 = isPalindrome(List(1, 2, 3, 2, 2))
+						val expected1 = false
+						val actual2 = isPalindrome(List(1))
+						val expected2 = true
+						val actual3 = isPalindrome(List(2, 2))
+						val expected3 = true
+						if (actual == expected &&
+						    actual1 == expected1 &&
+						    actual2 == expected2 &&
+						    actual3 == expected3) 
+							print("You successfully implemented the function")
+						else
+							print("Unfortunatly, that's not quite right yet")
+	         			</pre>
+	         		</iframe>
+	    		</li>
+	    		<li>
+	        		<p>Using pattern matching</p>
+	        		<iframe src="http://www.scalakata.com/504eaebce4b04859bf01bf0c" height="400 px" width="100%">
+	        			<pre>
+	        				object :+ {
+						  def unapply[T] (list : List[T]) : Option[(List[T], T)] = {
+						      if (list.isEmpty) None
+						    	else Some(list.init, list.last)
+						  }
+						}
+						
+						def isPalindrome[T](list: List[T]): Boolean = {
+							list match {
+								case first :: (middle :+ last) if first == last => isPalindrome(middle)
+						    		case middle :: Nil                              => true
+						    		case Nil                                        => true
+						    		case first ::(middle :+ last) if first != last  => false
+							}
+						}
+						
+						val actual = isPalindrome(List(1, 2, 3, 2, 1))
+						val expected = true
+						val actual1 = isPalindrome(List(1, 2, 3, 2, 2))
+						val expected1 = false
+						val actual2 = isPalindrome(List(1))
+						val expected2 = true
+						val actual3 = isPalindrome(List(2, 2))
+						val expected3 = true
+						if (actual == expected &&
+						    actual1 == expected1 &&
+						    actual2 == expected2 &&
+						    actual3 == expected3) 
+							print("You successfully implemented the function")
+						else
+							print("Unfortunatly, that's not quite right yet")
+	        			</pre>
+	        		</iframe>
+	    		</li>
+		</ol>
+	</body>
+</html>

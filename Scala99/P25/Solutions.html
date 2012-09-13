@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>P13 - Run-length encoding of a list (direct solution)</title>
+	</head>
+	<body>
+		<h1>Run-length encoding of a list (direct solution) - Solutions</h1>
+		<ol>
+	    		<li>
+	         		<iframe src="http://www.scalakata.com/50500327e4b04859bf01bfcc" height="400 px" width="100%">
+	         			<pre>
+	         				def encodeDirect[T](list: List[T]): List[(Int, T)] = {
+							if (list.isEmpty) Nil
+						    	else {
+						      		val (packed, next) = list span { _ == list.head }
+						      		(packed.length, packed.head) :: encodeDirect(next)
+						    	}
+						}
+						
+						val actual = encodeDirect(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+						val expected = List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e))
+						if (actual == expected) print("You successfully implemented the function")
+						else                    print("Unfortunatly, that's not quite right yet")
+	         			</pre>
+	         		</iframe>
+	    		</li>
+		</ol>
+	</body>
+</html>

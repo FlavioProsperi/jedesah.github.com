@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title>P12 - Decode a run-length encoded list</title>
+	</head>
+	<body>
+		<h1>Decode a run-length encoded list</h1>
+		<p>Given a run-length code list generated as specified in problem P9 b), construct its uncompressed version</p>
+		<iframe src="http://www.scalakata.com/5050013ce4b04859bf01bfc7" height="600 px" width="100%">
+			<pre>
+				def decode[T](list: List[(Int, T)]): List[T] = {
+					// TODO: Implement
+				}
+				
+				val actual = decode(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
+				val expected = List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
+				if (actual == expected) print("You successfully implemented the function")
+				else                    print("Unfortunatly, that's not quite right yet")
+			</pre>
+		</iframe>
+		<a href="Solutions.html">Solutions</a>
+	</body>
+</html>

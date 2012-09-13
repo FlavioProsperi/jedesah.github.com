@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<title>P6 - Find out whether a list is a palindrome</title>
+	</head>
+	<body>
+		<h1>Find out whether a list is a palindrome</h1>
+		<iframe src="http://www.scalakata.com/504eafb8e4b04859bf01bf10" height="600 px" width="100%">
+			<pre>
+				def isPalindrome[T](list: List[T]): Boolean = {
+					// TODO: Implement
+				}
+				
+				val actual = isPalindrome(List(1, 2, 3, 2, 1))
+				val expected = true
+				val actual1 = isPalindrome(List(1, 2, 3, 2, 2))
+				val expected1 = false
+				val actual2 = isPalindrome(List(1))
+				val expected2 = true
+				val actual3 = isPalindrome(List(2, 2))
+				val expected3 = true
+				if (actual == expected &&
+				    actual1 == expected1 &&
+				    actual2 == expected2 &&
+				    actual3 == expected3) 
+					print("You successfully implemented the function")
+				else
+					print("Unfortunatly, that's not quite right yet")
+			</pre>
+		</iframe>
+		<a href="Solutions.html">Solutions</a>
+	</body>
+</html>

@@ -1,0 +1,103 @@
+<html>
+	<head>
+		<title>P18 - Extract a slice from a list</title>
+	</head>
+	<body>
+		<h1>Extract a slice from a list - Solutions</h1>
+		<ol>
+	    		<li>
+	        		<p>Using the built-in</p>
+	         		<iframe src="http://www.scalakata.com/50500d42e4b04859bf01bfe1" height="400 px" width="100%">
+	         			<pre>
+	         				def slice[T](startIndex: Int, endIndex: Int, list: List[T]): List[T] = {
+							list.slice(startIndex, endIndex)
+						}
+						
+						val actual = slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+						val expected = List('d, 'e, 'f, 'g)
+						if (actual == expected) print("You successfully implemented the function")
+						else                    print("Unfortunatly, that's not quite right yet")
+	         			</pre>
+	         		</iframe>
+	    		</li>
+	    		<li>
+	        		<p>Simple recursive</p>
+	        		<iframe src="http://www.scalakata.com/50500dabe4b04859bf01bfe3" height="400 px" width="100%">
+	        			<pre>
+	        				def slice[T](startIndex: Int, endIndex: Int, list: List[T]): List[T] = {
+							(startIndex, endIndex, list) match {
+								case (_, _, Nil)                 => Nil
+								case (_, e, _)         if e <= 0 => Nil
+								case (s, e, h :: tail) if s <= 0 => h :: slice(0, e - 1, tail)
+								case (s, e, h :: tail)           => slice(s - 1, e - 1, tail)
+							}
+						}
+						
+						val actual = slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+						val expected = List('d, 'e, 'f, 'g)
+						if (actual == expected) print("You successfully implemented the function")
+						else                    print("Unfortunatly, that's not quite right yet")
+	        			</pre>
+	        		</iframe>
+	    		</li>
+	    		<li>
+	    			<p>Tail recursive, using pattern matching</p>
+	    			<iframe src="http://www.scalakata.com/50500e1ae4b04859bf01bfe5" height="400 px" width="100%">
+	    				<pre>
+	    					def slice[T](startIndex: Int, endIndex: Int, list: List[T]): List[T] = {
+							def slice(count: Int, curList: List[T], result: List[T]): List[T] =
+						      		(count, curList) match {
+						        		case (_, Nil)                     => result.reverse
+						        		case (c, h :: tail) if endIndex <= c   => result.reverse
+						        		case (c, h :: tail) if startIndex <= c => slice(c + 1, tail, h :: result)
+						        		case (c, _ :: tail)               => slice(c + 1, tail, result)
+						      		}
+						    	slice(0, list, Nil)
+						}
+						
+						val actual = slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+						val expected = List('d, 'e, 'f, 'g)
+						if (actual == expected) print("You successfully implemented the function")
+						else                    print("Unfortunatly, that's not quite right yet")
+	    				</pre>
+	    			</iframe>
+	    		</li>
+	    		<li>
+	    			<p>Since several of the patterns are similar, we can condense the tail recursive solution a little.</p>
+	    			<iframe src="http://www.scalakata.com/50500e8ae4b04859bf01bfe7" height="400 px" width="100%">
+	    				<pre>
+	    					def slice[T](startIndex: Int, endIndex: Int, list: List[T]): List[T] = {
+							def slice(count: Int, curList: List[T], result: List[T]): List[T] = {
+						      		if (curList.isEmpty || count >= endIndex) result.reverse
+						      		else slice(count + 1, curList.tail,
+						                  	if (count >= startIndex) curList.head :: result
+						                  	else result)
+						    	}
+						    	slice(0, list, Nil)
+						}
+						
+						val actual = slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+						val expected = List('d, 'e, 'f, 'g)
+						if (actual == expected) print("You successfully implemented the function")
+						else                    print("Unfortunatly, that's not quite right yet")
+	    				</pre>
+	    			</iframe>
+	    		</li>
+	    		<li>
+	    			<p>Functional</p>
+	    			<iframe src="http://www.scalakata.com/50500ed3e4b04859bf01bfe8" height="400 px" width="100%">
+	    				<pre>
+	    					def slice[T](startIndex: Int, endIndex: Int, list: List[T]): List[T] = {
+							 list drop startIndex take (endIndex - (startIndex max 0))
+						}
+						
+						val actual = slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+						val expected = List('d, 'e, 'f, 'g)
+						if (actual == expected) print("You successfully implemented the function")
+						else                    print("Unfortunatly, that's not quite right yet")
+	    				</pre>
+	    			</iframe>
+	    		</li>
+		</ol>
+	</body>
+</html>

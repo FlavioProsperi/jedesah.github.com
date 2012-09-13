@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>P7 - Flatten a nested list structure</title>
+	</head>
+	<body>
+		<h1>Flatten a nested list structure - Solutions</h1>
+		<ol>
+    		<li>
+         		<iframe src="http://www.scalakata.com/504eb15ee4b04859bf01bf12" height="400 px" width="100%">
+         			<pre>
+         				def flatten(list: List[Any]): List[Any] = {
+						list flatMap {
+						    	case ms: List[_] => flatten(ms)
+						    	case e => List(e)
+						}
+					}
+					
+					val actual = flatten(List(List(1, 1), 2, List(3, List(5, 8))))
+					val expected = List(1, 1, 2, 3, 5, 8)
+					if (actual == expected) print("You successfully implemented the function")
+					else                    print("Unfortunatly, that's not quite right yet")
+         			</pre>
+         		</iframe>
+    		</li>
+		</ol>
+	</body>
+</html>
