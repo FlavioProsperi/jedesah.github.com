@@ -1,17 +1,17 @@
 <html>
 	<head>
-		<title>P16 - Drop every <i>N</i>th element from a list</title>
+		<title>P22 - Create a list containing all integers within a given range</title>
 	</head>
 	<body>
-		<h1>Drop every <i>N</i>th element from a list</h1>
-		<iframe src="http://www.scalakata.com/505006ade4b04859bf01bfd3" height="600 px" width="100%">
+		<h1>Create a list containing all integers within a given range</h1>
+		<iframe src="http://www.scalakata.com/50555e53e4b04859bf01d094" height="600 px" width="100%">
 			<pre>
-				def drop[T](nbToDrop: Int, list: List[T]): List[T] = {
+				def range(startValue: Int, endValue: Int): List[Int] = {
 					// TODO: Implement
 				}
 				
-				val actual = drop(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
-				val expected = List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)
+				val actual = range(4, 9)
+				val expected = List(4, 5, 6, 7, 8, 9)
 				if (actual == expected) print("You successfully implemented the function")
 				else                    print("Unfortunatly, that's not quite right yet")
 			</pre>
