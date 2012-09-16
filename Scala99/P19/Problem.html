@@ -1,23 +1,21 @@
 <html>
 	<head>
-		<title>P1 - Find the last element of a list</title>
+		<title>P19 - Rotate a list N places to the left</title>
 	</head>
 	<body>
-		<h1>Find the last element of a list</h1>
-		<iframe src="http://www.scalakata.com/504438a3e4b0e5b34a987bc1" height="600 px" width="100%">
+		<h1>Rotate a list N places to the left</h1>
+		<iframe src="http://www.scalakata.com/505558a4e4b04859bf01d08c" height="600 px" width="100%">
 			<pre>
-				def last[T](list: List[T]): T = {
+				def rotate[T](n: Int, list: List[T]): List[T] = {
 					// TODO: Implement
 				}
-
-				val actual = last(List(1, 1, 2, 3, 5, 8))
-				val expected = 8
-				val actual1 = last(List(9))
-				val expected1 = 9
-				if (actual == expected && actual1 == expected1)
-					print("You successfully implemented the function")
-				else
-					print("Unfortunatly, that's not quite right yet")
+				
+				val actual = rotate(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+				val expected = List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k, 'a, 'b, 'c)
+				val actual2 = rotate(-2, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+				val expected2 = List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i)
+				if (actual == expected && actual2 == expected2) print("You successfully implemented the function")
+				else                                            print("Unfortunatly, that's not quite right yet")
 			</pre>
 		</iframe>
 		<a href="Solutions.html">Solutions</a>
