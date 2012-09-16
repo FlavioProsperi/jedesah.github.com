@@ -1,20 +1,18 @@
 <html>
 	<head>
-		<title>P18 - Extract a slice from a list</title>
+		<title>P20 - Remove the Kth element from a list</title>
 	</head>
 	<body>
-		<h1>Extract a slice from a list</h1>
-		<p>Given two indices, I and K, the slice is the list containing the elements from and
-		including the Ith element up to but not including the Kth element of the original list.
-		Start counting the elements with 0.</p>
-		<iframe src="http://www.scalakata.com/50500ce9e4b04859bf01bfe0" height="600 px" width="100%">
+		<h1>Remove the Kth element from a list</h1>
+		<p>Return the list and the removed element in a Tuple. Elements are numbered from 0.</p>
+		<iframe src="http://www.scalakata.com/50555a5ee4b04859bf01d08e" height="600 px" width="100%">
 			<pre>
-				def slice[T](startIndex: Int, endIndex: Int, list: List[T]): List[T] = {
+				def removeAt[T](index: Int, list: List[T]): (List[T], T) = {
 					// TODO: Implement
 				}
 				
-				val actual = slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
-				val expected = List('d, 'e, 'f, 'g)
+				val actual = removeAt(1, List('a, 'b, 'c, 'd))
+				val expected = (List('a, 'c, 'd),'b)
 				if (actual == expected) print("You successfully implemented the function")
 				else                    print("Unfortunatly, that's not quite right yet")
 			</pre>
