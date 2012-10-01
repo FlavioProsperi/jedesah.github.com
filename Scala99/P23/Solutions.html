@@ -1,21 +1,33 @@
 <html>
 	<head>
-		<title>P15 - Duplicate the elements of a list a given number of times</title>
+		<title>P23 - Extract a given number of randomly selected elements from a list</title>
 	</head>
 	<body>
-		<h1>Duplicate the elements of a list a given number of times - Solutions</h1>
 		<ol>
 	    		<li>
-	         		<iframe src="http://www.scalakata.com/505005b8e4b04859bf01bfd2" height="400 px" width="100%">
+	         		<iframe src="http://www.scalakata.com/50690878e4b07021960b7810" height="400 px" width="100%">
 	         			<pre>
-	         				def duplicateN[T](numberOfTimes: Int, list: List[T]): List[T] = {
-							list flatMap { List.make(numberOfTimes, _) }
+	         				def removeAt[T](index: Int, list: List[T]): (List[T], T) = {
+							list.splitAt(index) match {
+						    	case (Nil, _) if index < 0 => throw new NoSuchElementException
+						    	case (pre, e :: post)  => (pre ::: post, e)
+						    	case (pre, Nil)        => throw new NoSuchElementException
+						  	}
 						}
 						
-						val actual = duplicateN(3, List('a, 'b, 'c, 'c, 'd))
-						val expected = List('a, 'a, 'a, 'b, 'b, 'b, 'c, 'c, 'c, 'c, 'c, 'c, 'd, 'd, 'd)
-						if (actual == expected) print("You successfully implemented the function")
-						else                    print("Unfortunatly, that's not quite right yet")
+						def randomSelect[T](amount: Int, list: List[T]): List[T] = {
+							if (amount <= 0) Nil
+						    else {
+								import scala.util.Random
+						      val (rest, e) = removeAt(Random.nextInt(list.length), list)
+						      e :: randomSelect(amount - 1, rest)
+						    }
+						}
+						
+						val actual = randomSelect(3, List('a, 'b, 'c, 'd, 'f, 'g, 'h))
+						val expected = List('e, 'd, 'a)
+						if (actual.length == expected.length) print("Does this seem random?: " + actual)
+						else                                  print("Unfortunatly, that's not quite right yet")					
 	         			</pre>
 	         		</iframe>
 	    		</li>
