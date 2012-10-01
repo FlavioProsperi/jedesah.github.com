@@ -1,22 +1,38 @@
 <html>
 	<head>
-		<title>P14 - Duplicate the elements of a list</title>
+		<title>P24 - Lotto: Draw N different random numbers from the set 1..M.</title>
 	</head>
 	<body>
-		<h1>Duplicate the elements of a list - Solutions</h1>
+		<h1>Lotto: Draw N different random numbers from the set 1..M. - Solutions</h1>
 		<ol>
 	    		<li>
-	        		<p>Using the built-in</p>
-	         		<iframe src="http://www.scalakata.com/50500481e4b04859bf01bfcf" height="400 px" width="100%">
+	         		<iframe src="http://www.scalakata.com/50690e5ee4b07021960b7816" height="400 px" width="100%">
 	         			<pre>
-	         				def duplicate[T](list: List[T]): List[T] = {
-							list flatMap { e => List(e, e) }
+	         				def removeAt[T](index: Int, list: List[T]): (List[T], T) = {
+							list.splitAt(index) match {
+						    	case (Nil, _) if index < 0 => throw new NoSuchElementException
+						    	case (pre, e :: post)  => (pre ::: post, e)
+						    	case (pre, Nil)        => throw new NoSuchElementException
+						  	}
 						}
 						
-						val actual = duplicate(List('a, 'b, 'c, 'c, 'd))
-						val expected = List('a, 'a, 'b, 'b, 'c, 'c, 'c, 'c, 'd, 'd)
-						if (actual == expected) print("You successfully implemented the function")
-						else                    print("Unfortunatly, that's not quite right yet")
+						def randomSelect[T](amount: Int, list: List[T]): List[T] = {
+						    if (amount <= 0) Nil
+						    else {
+								import scala.util.Random
+						      val (rest, e) = removeAt(Random.nextInt(list.length), list)
+						      e :: randomSelect(amount - 1, rest)
+						    }
+						}
+						
+						def lotto(amountToDraw: Int, valueUpperBound: Int): List[Int] = {
+							randomSelect(amountToDraw, List.range(1, valueUpperBound + 1))
+						}
+						
+						val actual = lotto(6, 49)
+						val expected = List(23, 1, 17, 33, 21, 37)
+						if (actual.length == expected.length) print("Does this seem random and in the bounds: " + actual)
+						else                                  print("Unfortunatly, that's not quite right yet")
 	         			</pre>
 	         		</iframe>
 	    		</li>
