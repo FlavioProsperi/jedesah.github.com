@@ -1,19 +1,19 @@
 <html>
 	<head>
-		<title>P14 - Duplicate the elements of a list</title>
+		<title>P24 - Lotto: Draw N different random numbers from the set 1..M.</title>
 	</head>
 	<body>
-		<h1>Duplicate the elements of a list</h1>
-		<iframe src="http://www.scalakata.com/50500422e4b04859bf01bfce" height="600 px" width="100%">
+		<h1>Lotto: Draw N different random numbers from the set 1..M</h1>
+		<iframe src="http://www.scalakata.com/50690d84e4b07021960b7811" height="600 px" width="100%">
 			<pre>
-				def duplicate[T](list: List[T]): List[T] = {
+				def lotto(amountToDraw: Int, valueUpperBound: Int): List[Int] = {
 					// TODO: Implement
 				}
 				
-				val actual = duplicate(List('a, 'b, 'c, 'c, 'd))
-				val expected = List('a, 'a, 'b, 'b, 'c, 'c, 'c, 'c, 'd, 'd)
-				if (actual == expected) print("You successfully implemented the function")
-				else                    print("Unfortunatly, that's not quite right yet")
+				val actual = lotto(6, 49)
+				val expected = List(23, 1, 17, 33, 21, 37)
+				if (actual.length == expected.length) print("Does this seem random and in the bounds: " + actual)
+				else                                  print("Unfortunatly, that's not quite right yet")
 			</pre>
 		</iframe>
 		<a href="Solutions.html">Solutions</a>
